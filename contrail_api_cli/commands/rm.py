@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 import itertools
 
@@ -47,5 +47,5 @@ class Rm(Command):
  - %s""" % "\n - ".join([self.current_path(r) for r in resources])
             if force or continue_prompt(message=message):
                 for r in reversed(resources):
-                    print("Deleting %s" % self.current_path(r))
+                    print(("Deleting %s" % self.current_path(r)))
                     r.delete()

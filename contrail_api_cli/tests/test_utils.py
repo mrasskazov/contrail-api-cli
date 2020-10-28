@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 import unittest
 import sys
 import io
@@ -63,11 +63,11 @@ class TestUtils(unittest.TestCase):
     def test_paralel_map(self):
         lst = [1, 2, 3, 4, 5]
         res = utils.parallel_map(lambda x: x * 2, lst)
-        expected = list(map(lambda x: x * 2, lst))
+        expected = list([x * 2 for x in lst])
         self.assertEqual(res, expected)
 
         res = utils.parallel_map(lambda x: x * 2, lst, workers=2)
-        expected = list(map(lambda x: x * 2, lst))
+        expected = list([x * 2 for x in lst])
         self.assertEqual(res, expected)
 
 

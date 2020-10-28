@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 from six import add_metaclass
 
 from .utils import Singleton, Path

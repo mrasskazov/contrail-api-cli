@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 import os.path
 import re
 import pipes
@@ -69,7 +69,7 @@ class Shell(Command):
         history = FileHistory(os.path.join(CONFIG_DIR, 'history'))
         cmd_aliases = ShellAliases()
         for cmd_name, cmd in manager.list:
-            map(cmd_aliases.set, cmd.aliases)
+            list(map(cmd_aliases.set, cmd.aliases))
         # load home resources to have them in cache
         # also build shortcut list for resource types
         # typing vmi/ will be expanded to virtual-machine-interface/

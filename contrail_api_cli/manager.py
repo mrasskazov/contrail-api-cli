@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 from six import add_metaclass
 import itertools
 import argparse
@@ -49,8 +49,8 @@ class CommandManager(object):
         self.mgrs = [mgr for mgr in self.mgrs if not mgr.namespace == ns]
 
     def _on_failure(self, mgr, entrypoint, exc):
-        print('Cannot load command %s: %s' % (entrypoint.name,
-                                              exc))
+        print(('Cannot load command %s: %s' % (entrypoint.name,
+                                              exc)))
 
     def get(self, name):
         """Return command instance of loaded

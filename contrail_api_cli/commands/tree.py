@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from ..command import Command, Arg, Option, expand_paths
 from ..resource import Resource

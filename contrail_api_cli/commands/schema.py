@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 from six import string_types, text_type
 
 from ..command import Command, Arg, Option

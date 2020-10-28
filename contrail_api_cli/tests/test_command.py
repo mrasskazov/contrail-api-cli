@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 import sys
 import unittest
 import uuid
@@ -169,13 +169,13 @@ bar/ffe8de43-a141-4336-8d70-bf970813bbf7"""
         }
         Context().shell.current_path = Path('/')
         result = self.mgr.get('ls')(paths=['foo/ec1afeaa-8930-43b0-a60a-939f23a50724'],
-                                    long=True)
+                                    int=True)
         expected_result = "foo/ec1afeaa-8930-43b0-a60a-939f23a50724  default-project:foo:ec1afeaa-8930-43b0-a60a-939f23a50724"
         self.assertEqual(result, expected_result)
 
         Context().shell.current_path = Path('/foo')
         result = self.mgr.get('ls')(paths=['ec1afeaa-8930-43b0-a60a-939f23a50724'],
-                                    long=True, fields=['prop'])
+                                    int=True, fields=['prop'])
         expected_results = ["ec1afeaa-8930-43b0-a60a-939f23a50724  foo=False|bar=1,2,3",
                             "ec1afeaa-8930-43b0-a60a-939f23a50724  bar=1,2,3|foo=False"]
 

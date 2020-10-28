@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 import json
 import string
 import re
@@ -10,7 +10,7 @@ import itertools
 import logging
 try:
     from UserDict import UserDict
-    from UserList import UserList
+    from collections import UserList
 except ImportError:
     from collections import UserDict, UserList
 
@@ -391,7 +391,7 @@ class Collection(ResourceBase, UserList):
                                   fetch=recursive - 1 > 0,
                                   recursive=recursive - 1,
                                   **res.get(self.type, res))
-                         for res_type, res_list in data.items()
+                         for res_type, res_list in list(data.items())
                          for res in res_list]
 
         return self
@@ -471,7 +471,7 @@ class Resource(ResourceBase, UserDict):
 
     def __dir__(self):
         return sorted(set(dir(type(self)) + list(self.__dict__) +
-                      self.properties.keys()))
+                      list(self.properties.keys())))
 
     def __eq__(self, other):
         if not isinstance(other, Resource) or not self.type == other.type:

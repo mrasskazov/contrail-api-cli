@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 import sys
 import inspect
 import argparse
@@ -239,9 +239,9 @@ class Command(object):
 
     @classmethod
     def add_arguments_to_parser(cls, parser):
-        for (arg_name, arg) in cls.args.items():
+        for (arg_name, arg) in list(cls.args.items()):
             parser.add_argument(arg_name, **arg.kwargs)
-        for (option_name, option) in cls.options.items():
+        for (option_name, option) in list(cls.options.items()):
             parser.add_argument(*option.option_strings, **option.kwargs)
 
     def parse_and_call(self, *args):

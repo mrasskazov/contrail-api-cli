@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 import gevent
 import gevent.monkey
@@ -101,7 +101,7 @@ class Observable(object):
         if not hasattr(cls, "observers"):
             cls.observers = {}
         [cbk(data)
-         for evt, cbks in cls.observers.items()
+         for evt, cbks in list(cls.observers.items())
          for cbk in cbks
          if evt == event]
 
@@ -274,9 +274,9 @@ def to_unicode(value):
     if isinstance(value, string_types):
         return text_type(value)
     elif isinstance(value, collections.Mapping):
-        return dict(map(to_unicode, list(value.items())))
+        return dict(list(map(to_unicode, list(value.items()))))
     elif isinstance(value, collections.Iterable):
-        return type(value)(map(to_unicode, value))
+        return type(value)(list(map(to_unicode, value)))
     return value
 
 

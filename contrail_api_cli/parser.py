@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 import logging
 
 from .manager import CommandManager
@@ -43,7 +43,7 @@ class CommandParser(object):
 
         rtype: command.Option generator
         """
-        for option_str in filter(lambda c: c.startswith('-'), self.words):
+        for option_str in [c for c in self.words if c.startswith('-')]:
             for option in list(self.cmd.options.values()):
                 if option_str in option.option_strings:
                     yield option
@@ -78,7 +78,7 @@ class CommandParser(object):
                 values.append((c, c == self.document.get_word_before_cursor(WORD=True)))
         logger.debug("Found args values %s" % values)
         # consume values
-        for arg in self.cmd.args.values():
+        for arg in list(self.cmd.args.values()):
             if not values:
                 raise StopIteration
             if arg.is_multiple:

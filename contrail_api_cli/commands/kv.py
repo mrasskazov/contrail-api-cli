@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 from ..command import Command, Option
 from ..utils import to_json, highlight_json

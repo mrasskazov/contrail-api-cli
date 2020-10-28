@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 from six import text_type
 
 from ..command import Command, Arg, Option, expand_paths
@@ -74,7 +74,7 @@ class Ls(Command):
                          complete="resources::uuid")
     # fields to show in -l mode when no
     # column is specified
-    default_fields = [u'fq_name']
+    default_fields = ['fq_name']
     aliases = ['ll = ls -l']
 
     def _field_val_to_str(self, fval, fkey=None):
@@ -84,7 +84,7 @@ class Ls(Command):
             return ",".join([self._field_val_to_str(i) for i in fval])
         elif isinstance(fval, dict) or isinstance(fval, Resource):
             return "|".join(["%s=%s" % (k, self._field_val_to_str(v, k))
-                             for k, v in fval.items()])
+                             for k, v in list(fval.items())])
         return text_type(fval)
 
     def _get_field(self, resource, field):
@@ -119,7 +119,7 @@ class Ls(Command):
 
     def __call__(self, paths=None, long=False, fields=None,
                  filters=None, parent_uuid=None):
-        if not long:
+        if not int:
             fields = []
         elif not fields:
             fields = self.default_fields

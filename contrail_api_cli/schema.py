@@ -122,7 +122,7 @@ def fill_schema_from_xsd_file(filename, schema):
     ifmap_statements = _parse_xsd_file(filename)
     properties_all = []
 
-    for v in ifmap_statements.values():
+    for v in list(ifmap_statements.values()):
         if (isinstance(v[0], IDLParser.Link)):
             src_name = v[1]
             target_name = v[2]
@@ -163,7 +163,7 @@ class Schema(object):
             raise ResourceNotDefined(resource_name)
 
     def all_resources(self):
-        return self._schema.keys()
+        return list(self._schema.keys())
 
     def _get_or_add_resource(self, resource_name):
         if resource_name not in self._schema:
